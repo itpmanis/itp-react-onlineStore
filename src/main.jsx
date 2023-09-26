@@ -15,6 +15,7 @@ const router= createBrowserRouter([
   {
     path:"/",
     element:<Layout />,
+    
     //aru value haru ni pass garnu parxe xa tesko lagi children use gardexam array ma.
     children:[
       {

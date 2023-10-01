@@ -10,6 +10,11 @@ This is a React-based web application for an online restaurant menu. It allows u
 - View purchase history.
 - Responsive design for mobile and desktop use.
 
+## Authentication using Local Storage
+
+To handle authentication, we use local storage to store user login data. When a user signs up or logs in, their email and password are stored in the browser's local storage. This allows the application to remember the user's login status.
+
+
 
 
 ## Technologies Used

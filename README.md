@@ -31,6 +31,9 @@ This is a React-based web application for an online restaurant menu. It allows u
 - Explore the purchase history.
 
 ## Screenshots
+![screencapture-localhost-5173-login-2023-10-02-01_23_51](https://github.com/itpmanis/itp-react-onlineStore/assets/95114404/c0e0b334-6451-4635-a35b-aadd98eae48f)
+![screencapture-localhost-5173-signup-2023-10-02-01_24_07](https://github.com/itpmanis/itp-react-onlineStore/assets/95114404/1c67ae5f-58ad-486e-ba48-26e3690a97c0)
+
 ![screencapture-localhost-5173-2023-09-26-23_34_01](https://github.com/itpmanis/itp-react-onlineStore/assets/95114404/2903039a-f961-4305-84f1-71eeb6bceae0)
 ![screencapture-localhost-5173-about-2023-09-26-23_34_50](https://github.com/itpmanis/itp-react-onlineStore/assets/95114404/6abf1407-e8e0-48a7-ae68-0641a33712f3)
 ![screencapture-localhost-5173-contact-2023-09-26-23_35_23](https://github.com/itpmanis/itp-react-onlineStore/assets/95114404/61bdcb50-ddb1-440e-9b4e-0b5df440b752)

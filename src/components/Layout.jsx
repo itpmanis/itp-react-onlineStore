@@ -3,21 +3,16 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 
 // Outlet le hamro route ko path lai match garcha ani tyo path ko component lai render garcha.
-const ignore = ["/login", "/register"]
 
 const Layout = () => {
-  //find current path
   const location = useLocation();
-  console.log(location.pathname);
+  const ignore = ["/login", "/register"];
 
-  
   return (
     <>
-    {
-      ignore.includes(location.pathname) ? null : <Header />
-    }
-      <Outlet  />
-      <Footer />
+      {ignore.includes(location.pathname) ? null : <Header />}
+      <Outlet />
+      {ignore.includes(location.pathname) ? null : <Footer />}
     </>
   );
 };

@@ -1,19 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
-    name: '',
     email: '',
     password: '',
-    phone: '',
-    sex: '',
-    age: '',
-    address: '',
-    profile: null,
+    gender: '',
+    company: '',
   });
 
   const handleChange = (e) => {
@@ -24,65 +19,92 @@ const Signup = () => {
     });
   };
 
-  const handleProfileChange = (e) => {
-    setFormValues({
-      ...formValues,
-      profile: e.target.files[0],
-    });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    let formData = new FormData();
-    for (const key in formValues) {
-      formData.append(key, formValues[key]);
-    }
-
-    console.log('Form data:', formData);
     // Add your form submission logic here
-
+    console.log('Form data:', formValues);
     // Redirect to home after successful submission
-    navigate('/');
+    navigate('/login');
+
+    //store login data in local storage
+    localStorage.setItem('login', JSON.stringify(formValues));
+
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="flex flex-col md:flex-row">
-        {/* Signup Intro */}
-        <div className="md:w-1/2 p-10">
-          <h1 className="text-white text-3xl mb-4">Hey Buddy!</h1>
-          <p className="text-white mb-10">Do a quick Sign Up and Grab some Books!</p>
-          <img src="../Assets/images/booklogo.png" alt="Book" className="h-48" />
+      <div className="md:w-1/2 p-10">
+        <div className="mb-4">
+          Already a user? <Link to="/login" className="text-blue-500 hover:underline"><b>SignIn</b></Link>
         </div>
-
-        {/* Signup Form */}
-        <div className="md:w-1/2 p-10">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">
-            Already a user? <Link to="/" className="text-blue-500 hover:underline"><b>SignIn</b></Link>
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={handleChange}
+              value={formValues.email}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Email"
+            />
           </div>
-          <form onSubmit={handleSubmit}>
-            {/* Form fields */}
-            {/* ... (other form items) */}
-
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="profile">
-                Upload
-              </label>
-              <input type="file" name="profile" id="profile" onChange={handleProfileChange} />
-            </div>
-
-            {/* Submit button */}
-            <div className="mb-4">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-              >
-                Register
-              </button>
-            </div>
-          </form>
-        </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={handleChange}
+              value={formValues.password}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Password"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gender">
+              Gender
+            </label>
+            <select
+              name="gender"
+              id="gender"
+              onChange={handleChange}
+              value={formValues.gender}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="company">
+              Company
+            </label>
+            <input
+              type="text"
+              name="company"
+              id="company"
+              onChange={handleChange}
+              value={formValues.company}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Company"
+            />
+          </div>
+          <div className="mb-4">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            >
+              Register
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

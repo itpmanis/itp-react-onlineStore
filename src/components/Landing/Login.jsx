@@ -12,7 +12,17 @@ const Login = () => {
   };
 
   const handleLogin = () => {
+   //check from local storage registered user then login and send to / page else send to signup page. check username password from local storage match or not.
     // Handle login logic
+    const loginData = localStorage.getItem('login');
+    if (loginData) {
+      console.log('loginData', JSON.parse(loginData));
+      window.location.href = '/';
+    } else {
+      window.location.href = '/signup';
+    }
+
+
   };
 
   return (

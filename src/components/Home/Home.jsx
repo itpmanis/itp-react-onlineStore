@@ -11,7 +11,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
  
-
   const handleItem = (data, quantity) => {
     setSelectedItems((prevSelectedItems) => ({
       ...prevSelectedItems,

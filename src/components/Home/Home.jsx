@@ -3,12 +3,15 @@ import foodApi from '../../Api/foodApi';
 import Mobile from '../../assets/mobile.png';
 import Appstore from '../../assets/appstore.png';
 import Hero from '../Hero/Hero';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [selectedItems, setSelectedItems] = useState({});
   const [totalAmount, setTotalAmount] = useState(0);
   const [purchasesHistory, setPurchasesHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
  
   const handleItem = (data, quantity) => {
@@ -56,6 +59,15 @@ const Home = () => {
       localStorage.setItem('totalAmount', JSON.stringify(totalAmount));
     }
   }, [selectedItems, totalAmount]);
+
+
+  useEffect(() => {
+    // Check if the user is logged in, if not, redirect to the sign-in page
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (!loggedInUser) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   return (
     <>

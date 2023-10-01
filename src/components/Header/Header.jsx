@@ -1,7 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo2 from "../../assets/logo2.png"
+import { Button } from "@material-tailwind/react";
 
 const Header=()=>{
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('loggedInUser');
+        navigate('/login');
+      };
     return(
         <>
         <header className="bg-slate-400 shadow-md sticky top-0 z-50">
@@ -31,18 +37,12 @@ const Header=()=>{
                 </div>
 
                 <div className="flex flex-row ">
-                        <Link
-                            to="/login"
-                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                        >
-                            Log in
-                        </Link>
-                        <Link
-                            to="#"
+                       
+                        <Button onClick={handleLogout}
                             className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
-                            Get started
-                        </Link>
+                            Logout
+                        </Button>
                 </div>
             </div>
 

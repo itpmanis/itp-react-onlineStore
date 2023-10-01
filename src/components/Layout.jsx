@@ -6,11 +6,12 @@ import Footer from "./Footer/Footer";
 
 const Layout = () => {
   const location = useLocation();
-  const ignore = ["/login", "/register"];
+  const ignore = ["/login", "/signup"];  // yo path haru ma header ani footer render nagarauna li.
 
   return (
     <>
-      {ignore.includes(location.pathname) ? null : <Header />}
+      {ignore.includes(location.pathname) ? null : <Header />} 
+      {/* simple ternary operator use gareko ho. if ignore array ma location.pathname xa vane header ani footer render nagarauna li. */}
       <Outlet />
       {ignore.includes(location.pathname) ? null : <Footer />}
     </>

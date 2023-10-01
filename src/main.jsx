@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, useNavigate } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./components/Home/Home.jsx";
 import About from "./components/About/About.jsx";
@@ -11,8 +11,9 @@ import NotFound from "./components/404/404.jsx";
 import Login from "./components/Landing/Login.jsx";
 import Signup from "./components/Landing/Signup.jsx";
 
-//method 1:  to pass routes to the router
+//Yuta router banako ho react-router-dom ko createBrowserRouter le. yo vitra hami routes haru define garxau. 
 const router = createBrowserRouter([
+  // yo object ma path, element, children haru xa. path le url ko path define garxa, element le tyo path ko component define garxa ani children le tyo path ko children define garxa.
   {
     path: "/",
     element: <Layout />,
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

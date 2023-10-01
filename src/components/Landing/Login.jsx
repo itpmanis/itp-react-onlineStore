@@ -9,7 +9,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Retrieve stored signup data from local storage
+    // locally stored data li retrive gareko
     const storedSignupData = JSON.parse(localStorage.getItem('login'));
 
     if (storedSignupData) {
@@ -21,7 +21,7 @@ const Login = () => {
         navigate('/');
         // Store the logged-in email and password in local storage
       localStorage.setItem('loggedInUser', JSON.stringify({ email, password }));
-      
+
       } else {
         // Credentials do not match, handle accordingly (e.g., show an error message)
         alert('Invalid email or password.');

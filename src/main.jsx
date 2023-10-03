@@ -11,6 +11,7 @@ import NotFound from "./components/404/404.jsx";
 import Login from "./components/Landing/Login.jsx";
 import Signup from "./components/Landing/Signup.jsx";
 
+
 //Yuta router banako ho react-router-dom ko createBrowserRouter le. yo vitra hami routes haru define garxau. 
 const router = createBrowserRouter([
   // yo object ma path, element, children haru xa. path le url ko path define garxa, element le tyo path ko component define garxa ani children le tyo path ko children define garxa.

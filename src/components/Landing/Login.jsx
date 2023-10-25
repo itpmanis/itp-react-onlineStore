@@ -1,87 +1,83 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const handleSignup = () => {
-    // Handle signup logic
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleForgot = () => {
-    // Handle forgot password logic
-  };
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-  const handleLogin = () => {
-    // Handle login logic
+    // locally stored data li retrive gareko
+    const storedSignupData = JSON.parse(localStorage.getItem('login'));
+
+
+    if (storedSignupData) {
+      const { email: storedEmail, password: storedPassword } = storedSignupData; // destructuring gareko ho. 
+
+      // Check if the entered email and password match the stored signup data
+      if (email === storedEmail && password === storedPassword) {
+        
+        // Store the logged-in email and password in local storage
+      localStorage.setItem('loggedInUser', JSON.stringify({ email, password }));
+
+      // login data li store garara home page ma redirect gareko
+      navigate('/');
+
+
+      } else {
+        
+        alert('Invalid email or password.');
+      }
+    } else {
+      // No signup data found, handle accordingly (e.g., show an error message)
+      alert('No signup data found.');
+      navigate('/signup');
+    }
   };
 
   return (
-    <div className="flex">
-      {/* Login intro */}
-      <div className="w-1/2 bg-blue-600 p-16 text-white">
-        <div className="flex items-center mb-10">
-          <img src={logo} alt="Logo" className="h-12" />
-          <b className="ml-4 text-xl">ITP Store</b>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url("https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")' }}>
+    <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+      <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+      <form className="space-y-4">
+        <div>
+          <label htmlFor="email" className="block mb-1 text-gray-700">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Email"
+          />
         </div>
-        <h2 className="text-2xl font-bold mb-4">Get exclusive access to Best sellers</h2>
-        <p>
-          We are in the process of developing our online platform, where we aim to make the concept as user-friendly as
-          possible. We send out access continuously, focusing on good customer contact.
-        </p>
-      </div>
-
-      {/* Login form */}
-      <div className="w-1/2 p-16">
-        <div className="mb-4">
-          Don't have an account? <Link to="/signup" className="text-blue-500" onClick={handleSignup}>
-            Create profile
-          </Link>
+        <div>
+          <label htmlFor="password" className="block mb-1 text-gray-700">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Password"
+          />
         </div>
-
-        <div className="bg-white p-8 rounded shadow-lg">
-          <form className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block mb-1">
-                Username
-              </label>
-              <input
-                type="text"
-                id="email"
-                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Username"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="block mb-1">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Password"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input type="checkbox" id="remember" className="mr-2" />
-                <label htmlFor="remember">Remember me</label>
-              </div>
-              <Link to="/forgotpassword" className="text-blue-500" onClick={handleForgot}>
-                Forgot password
-              </Link>
-            </div>
-            <button
-              type="button"
-              className="w-full mt-4 px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-400 focus:outline-none"
-              onClick={handleLogin}
-            >
-              Log in
-            </button>
-          </form>
-        </div>
+        <button
+          type="submit"
+          className="w-full mt-4 px-6 py-3 bg-blue-500 text-white rounded-full hover:bg-blue-400 focus:outline-none transform transition-transform duration-300 ease-in-out hover:scale-105"
+          onClick={handleLogin}
+        >
+          Log in
+        </button>
+      </form>
+      <div className="mt-4 flex justify-between">
+        <Link to="/signup" className="text-blue-500 hover:underline">Sign up</Link>
+        <Link to="/forgotpassword" className="text-blue-500 hover:underline">Forgot password?</Link>
       </div>
     </div>
+  </div>
   );
 };
 
